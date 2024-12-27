@@ -28,7 +28,7 @@ return {
       '<leader>ac',
       function()
         vim.g.use_clang_custom_style = not vim.g.use_clang_custom_style
-        print('clang-format style:', vim.g.use_clang_custom_style and 'Global Template' or 'Disabled')
+        print('clang-format style:', vim.g.use_clang_custom_style and 'Using Global Template' or 'Disabled')
       end,
       mode = '',
       desc = 'Toggle clang-format style',
@@ -44,6 +44,7 @@ return {
       python = { 'isort', 'black' },
       c = { 'clang_format' },
       cpp = { 'clang_format' },
+      -- cmake = { 'cmakelang' },
     },
     formatters = {
       clang_format = {

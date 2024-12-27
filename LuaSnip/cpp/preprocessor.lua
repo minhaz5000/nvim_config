@@ -4,46 +4,14 @@ local get_visual = helpers.get_visual
 local line_begin = require('luasnip.extras.expand_conditions').line_begin
 
 return {
-  -- IF STATEMENT
+  -- ifdef
   s(
-    { trig = 'iff', snippetType = 'autosnippet' },
-    fmta(
-    [[
-    if (<>) {
-      <>
-    }
-    ]],
-      {
-        i(1),
-        d(2, get_visual),
-      }
-    ),
-    { condition = line_begin }
-  ),
-  -- FOR LOOP
-  s(
-    { trig = 'fll', snippetType = 'autosnippet' },
-    fmta(
-    [[
-    for (<>) {
-      <>
-    }
-    ]],
-      {
-        i(1),
-        d(2, get_visual),
-      }
-    ),
-    { condition = line_begin }
-  ),
-  -- WHILE LOOP
-  s(
-    { trig = 'wll', snippetType = 'autosnippet' },
+    { trig = 'ifdef', snippetType = 'autosnippet' },
     fmta(
       [[
-      while (<>) {
+      #ifdef <>
         <>
-      }
+      #endif
       ]],
       {
         i(1),
@@ -52,27 +20,49 @@ return {
     ),
     { condition = line_begin }
   ),
-  -- SWITCH STATEMENT
+  -- ifndef
   s(
-    { trig = 'swc', snippetType = 'autosnippet' },
+    { trig = 'ifndef', snippetType = 'autosnippet' },
     fmta(
       [[
-    switch (<>) {
-        case <>:
-            <>
-            break;
+      #ifndef <>
         <>
-        default:
-            <>
-            break;
-    }
-    ]],
+      #endif
+      ]],
       {
         i(1),
-        i(2),
-        i(3),
-        i(4),
-        i(5),
+        d(2, get_visual),
+      }
+    ),
+    { condition = line_begin }
+  ),
+  -- Header Guard
+  s(
+    { trig = 'hguard', desc = 'INCLUDE GUARD', snippetType = 'autosnippet' },
+    fmta(
+      [[
+      #ifndef <>
+      #define <>
+        <>
+      #endif
+      ]],
+      {
+        i(1),
+        rep(1),
+        d(2, get_visual),
+      }
+    ),
+    { condition = line_begin }
+  ),
+  -- define
+  s(
+    { trig = 'dff', snippetType = 'autosnippet' },
+    fmta(
+      [[
+      #define <>
+      ]],
+      {
+        i(1),
       }
     ),
     { condition = line_begin }

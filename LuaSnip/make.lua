@@ -24,13 +24,13 @@ return
         { }
       )
     ),
-    -- PHONY target
-    s({trig = "PP", wordTrig=false, snippetType="autosnippet"},
-      fmta(
-        [[
-        .PHONY: 
-        ]],
-        { }
-      )
-    ),
+    -- -- PHONY target
+    -- s({trig = "PP", wordTrig=false, snippetType="autosnippet"},
+    --   fmta(
+    --     [[
+    --     .PHONY: 
+    --     ]],
+    --     { }
+    --   )
+    -- ),
   }

@@ -5,7 +5,7 @@ local line_begin = require('luasnip.extras.expand_conditions').line_begin
 
 return {
   s(
-    { trig = 'doctemp' },
+    { trig = 'boilderplate', dscr = 'Boilerplate for scripts' },
     fmt(
       [[
         # NAME

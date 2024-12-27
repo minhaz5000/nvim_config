@@ -4,27 +4,9 @@ local get_visual = helpers.get_visual
 local line_begin = require('luasnip.extras.expand_conditions').line_begin
 
 return {
-  -- New Project
-  s(
-    { trig = 'new', snippetType = 'autosnippet' },
-    fmta(
-      [[
-      cmake_minimum_required(VERSION 3.15...3.30)
-      project(
-          <>
-        VERSION <>
-        DESCRIPTION "<>"
-        LANGUAGES <>
-      )
-      ]],
-      { i(1), i(2, '1.0'), i(3), i(4, 'CXX') }
-    ),
-    { condition = line_begin }
-  ),
-
   -- Default build type
   s(
-    { trig = 'dbuild', snippetType = 'autosnippet' },
+    { trig = 'defbuild', dscr = 'Default build type' },
     fmta(
       [[
       # Default Build type if not specified (set to "Release")
@@ -32,19 +14,33 @@ return {
       if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
         message(
           STATUS
-          "Setting build type to '${default_build_type}' as none was specified.")
+          "Setting build type to '${default_build_type}' as none was specified."
+        )
         set(CMAKE_BUILD_TYPE
           "${default_build_type}"
-          CACHE STRING "Choose the type of build." FORCE)
+          CACHE STRING
+          "Choose the type of build."
+          FORCE
+        )
         # Set the possible values of build type for cmake-gui
-        set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
-                                               "MinSizeRel" "RelWithDebInfo")
+        set_property(
+          CACHE CMAKE_BUILD_TYPE
+          PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo"
+        )
       endif()
-  ]],
+      ]],
       {
         i(1, 'Release'),
       }
     ),
+    { condition = line_begin }
+  ),
+  -- Export Compile commands
+  s(
+    { trig = 'expcmpcmd', dscr = "Export Compile Commands" },
+    fmta([[set(CMAKE_EXPORT_COMPILE_COMMANDS <>)]], {
+      i(1, 'ON'),
+    }),
     { condition = line_begin }
   ),
   -- Message Status
@@ -82,7 +78,7 @@ return {
   ),
   -- In source build prohibit
   s(
-    { trig = 'noinsb', snippetType = 'autosnippet' },
+    { trig = 'noinsourcebuild', dscr = 'No In-source builds' },
     t {
       'if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})',
       '\tmessage(FATAL_ERROR "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there. You may need to remove CMakeCache.txt. ")',
@@ -144,5 +140,17 @@ return {
       i(3, '${CMAKE_CURRENT_SOURCE_DIR}/include'),
     }),
     { condition = line_begin }
+  ),
+    -- VARIABLE
+  s(
+    { trig = 'vv', wordTrig = false, snippetType = 'autosnippet' },
+    fmta(
+      [[
+        ${<>}
+        ]],
+      {
+        d(1, get_visual),
+      }
+    )
   ),
 }

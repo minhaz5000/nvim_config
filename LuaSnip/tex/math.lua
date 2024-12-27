@@ -10,7 +10,7 @@ tex.in_text = function() return not tex.in_mathzone() end
 return
 {
   -- SUPERSCRIPT
-  s({trig = "([%w%)%]%}])'", wordTrig=false, regTrig = true, snippetType="autosnippet"},
+  s({trig = "([%w%)%]%}])'", desc="SuperScript", wordTrig=false, regTrig = true, snippetType="autosnippet"},
     fmta(
       "<>^{<>}",
       {
@@ -21,7 +21,7 @@ return
     {condition = tex.in_mathzone}
   ),
   -- SUBSCRIPT
-  s({trig = "([%w%)%]%}]);", wordTrig=false, regTrig = true, snippetType="autosnippet"},
+  s({trig = "([%w%)%]%}]);", desc="SubScript", wordTrig=false, regTrig = true, snippetType="autosnippet"},
     fmta(
       "<>_{<>}",
       {
@@ -44,7 +44,7 @@ return
     {condition = tex.in_mathzone}
   ),
   -- TEXT SUBSCRIPT
-  s({trig = 'sd', snippetType="autosnippet", wordTrig=false},
+  s({trig = 'sd', desc="Text Subscript", snippetType="autosnippet", wordTrig=false},
     fmta("_{\\mathrm{<>}}",
       { d(1, get_visual) }
     ),
