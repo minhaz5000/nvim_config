@@ -603,8 +603,8 @@ require('lazy').setup({
         'pyright', -- LSP for python
         'isort', -- import formatter python
         'black', -- python formatter
-        'vale',
-        'markdownlint',
+        'shellcheck',
+        'shfmt',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -754,8 +754,8 @@ require('lazy').setup({
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
           vim.keymap.set({ 'i', 's' }, '<C-e>', function()
-            if ls.choice_active() then
-              ls.change_choice(1)
+            if luasnip.choice_active() then
+              luasnip.change_choice(1)
             end
           end, { silent = true }),
         },
