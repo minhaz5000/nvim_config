@@ -9,10 +9,10 @@ return {
     { trig = 'iff', snippetType = 'autosnippet' },
     fmta(
       [[
-    if (<>) {
-        <>
-    }
-    ]],
+      if (<>) {
+          <>
+      }
+      ]],
       {
         i(1),
         d(2, get_visual),
@@ -25,10 +25,10 @@ return {
     { trig = 'fll', snippetType = 'autosnippet' },
     fmta(
       [[
-    for (<>) {
-        <>
-    }
-    ]],
+      for (<>) {
+          <>
+      }
+      ]],
       {
         i(1),
         d(2, get_visual),
@@ -41,10 +41,10 @@ return {
     { trig = 'wll', snippetType = 'autosnippet' },
     fmta(
       [[
-    while (<>) {
-        <>
-    }
-    ]],
+      while (<>) {
+          <>
+      }
+      ]],
       {
         i(1),
         d(2, get_visual),
@@ -56,12 +56,12 @@ return {
   s(
     { trig = 'swc', snippetType = 'autosnippet' },
     fmta(
-      [[
+    [[
     switch (<>) {
         case <>:
             <>
             break;
-        <>    
+        <>
         default:
             <>
             break;

@@ -17,6 +17,6 @@ return {
     -- {f(get_ISO_8601_date)}
   ),
   -- Date Modified snippet
-  s({ trig = 'modifydate', dscr = 'Date Modified (Today)', condition = line_begin_or_non_letter }, fmt('Date Modified: {}', { f(get_date) })),
-  s({ trig = 'createdate', dscr = 'Date Created (Today)', condition = line_begin_or_non_letter }, fmt('Date Created: {}', { f(get_date) })),
+  -- s({ trig = 'modifydate', dscr = 'Date Modified (Today)', condition = line_begin_or_non_letter }, fmt('Date Modified: {}', { f(get_date) })),
+  -- s({ trig = 'createdate', dscr = 'Date Created (Today)', condition = line_begin_or_non_letter }, fmt('Date Created: {}', { f(get_date) })),
 }

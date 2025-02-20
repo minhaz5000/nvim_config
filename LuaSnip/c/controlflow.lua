@@ -10,7 +10,7 @@ return {
     fmta(
     [[
     if (<>) {
-      <>
+        <>
     }
     ]],
       {
@@ -26,7 +26,7 @@ return {
     fmta(
     [[
     for (<>) {
-      <>
+        <>
     }
     ]],
       {
@@ -42,7 +42,7 @@ return {
     fmta(
       [[
       while (<>) {
-        <>
+          <>
       }
       ]],
       {
@@ -57,16 +57,16 @@ return {
     { trig = 'swc', snippetType = 'autosnippet' },
     fmta(
       [[
-    switch (<>) {
-        case <>:
-            <>
-            break;
-        <>
-        default:
-            <>
-            break;
-    }
-    ]],
+      switch (<>) {
+          case <>:
+              <>
+              break;
+          <>
+          default:
+              <>
+              break;
+      }
+      ]],
       {
         i(1),
         i(2),

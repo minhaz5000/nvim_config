@@ -91,15 +91,14 @@ return {
   ),
   -- ECHO
   s(
-    { trig = 'pp', snippetType = 'autosnippet' },
+    { trig = 'pp', wordTrig = true, snippetType = 'autosnippet' },
     fmta(
       [[
         echo "<>"
         ]],
       {
         d(1, get_visual),
-      },
-      { condition = line_begin }
+      }
     )
   ),
   s(
@@ -114,5 +113,5 @@ return {
       }
     )
   ),
-  s({ trig = 'xx', snippetType = 'autosnippet' }, { t 'exit' }, { condition = line_begin }),
+  s({ trig = 'xx', wordTrig = true, snippetType = 'autosnippet' }, { t 'exit' }),
 }

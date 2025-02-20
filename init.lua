@@ -71,7 +71,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Enable expandtab to insert spaces instead of tabs
--- vim.opt.expandtab = true
+vim.opt.expandtab = true
 
 -- Set the width of a tab character to 4 spaces
 vim.opt.tabstop = 4

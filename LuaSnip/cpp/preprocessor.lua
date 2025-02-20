@@ -10,7 +10,7 @@ return {
     fmta(
       [[
       #ifdef <>
-        <>
+          <>
       #endif
       ]],
       {
@@ -26,7 +26,7 @@ return {
     fmta(
       [[
       #ifndef <>
-        <>
+          <>
       #endif
       ]],
       {
@@ -38,12 +38,12 @@ return {
   ),
   -- Header Guard
   s(
-    { trig = 'hguard', desc = 'INCLUDE GUARD', snippetType = 'autosnippet' },
+    { trig = 'header_guard', desc = 'INCLUDE GUARD' },
     fmta(
       [[
       #ifndef <>
       #define <>
-        <>
+          <>
       #endif
       ]],
       {

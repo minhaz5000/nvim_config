@@ -9,12 +9,12 @@ return {
     { trig = 'main', dscr = 'main function boilerplate' },
     fmta(
       [[
-        int main()
-        {
-            <>
-            return 0;
-        }
-        ]],
+      int main()
+      {
+          <>
+          return 0;
+      }
+      ]],
       { i(1) }
     ),
     { condition = line_begin }
@@ -24,14 +24,14 @@ return {
     { trig = 'ff', snippetType = 'autosnippet' },
     fmta(
       [[
-        /*
-            <>
-        */
-        <>(<>)
-        {
-            <>
-        }
-        ]],
+      /*
+      <>
+      */
+      <>(<>)
+      {
+          <>
+      }
+      ]],
       {
         i(3),
         i(1),
@@ -47,7 +47,7 @@ return {
     fmta(
       [[
       struct <> {
-        <>
+          <>
       };
       ]],
       {

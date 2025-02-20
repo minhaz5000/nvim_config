@@ -30,7 +30,7 @@ return {
   s(
     { trig = 'gll', snippetType = 'autosnippet' },
     fmta(
-      [[
+    [[
     char *line = NULL;
     size_t len = 0;
     ssize_t nread;

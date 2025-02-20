@@ -7,7 +7,7 @@ return {
       -- Format the buffer and print confirmation
       '<leader>f',
       function()
-        require('conform').format { async = true, lsp_fallback = true }
+        require('conform').format { async = true }
         print 'Buffer Formatted'
       end,
       mode = '',
@@ -36,15 +36,16 @@ return {
   },
 
   opts = {
-    notify_on_error = false,
-    notify_no_formatters = true,
     formatters_by_ft = {
       lua = { 'stylua' },
-      rust = { 'rustfmt', lsp_format = 'fallback' },
       python = { 'isort', 'black' },
       c = { 'clang_format' },
       cpp = { 'clang_format' },
-      -- cmake = { 'cmakelang' },
+      markdown = { 'mdsf', 'mdformat' },
+    },
+    -- Set default options
+    default_format_opts = {
+      lsp_format = 'fallback',
     },
     formatters = {
       clang_format = {
