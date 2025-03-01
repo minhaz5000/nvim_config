@@ -15,9 +15,9 @@ return {
     }
 
     -- Set the engine for latexmk to XeLaTeX
-    vim.g.vimtex_compiler_latexmk_engines = {
-      ['_'] = '-xelatex', -- Default engine
-    }
+    -- vim.g.vimtex_compiler_latexmk_engines = {
+    --   ['_'] = '-xelatex', -- Default engine
+    -- }
 
     -- -- Enable automatic compilation on save
     vim.g.vimtex_autocompile = {
@@ -49,7 +49,7 @@ return {
     --   {'\\big', '\\big'},
     -- }
 
-    -- vim.g.vimtex_quickfix_mode = 0
+    vim.g.vimtex_quickfix_mode = 0
     -- Don't open quickfix for warning messages if no errors are present
     vim.g.vimtex_quickfix_open_on_warning = 0
 
@@ -66,8 +66,8 @@ return {
 
     -- Enable PDF preview using your favorite PDF viewer
     -- vim.g.vimtex_view_method = 'qpdfview'
-    vim.g.vimtex_view_method = 'zathura_simple'
-    -- vim.g.vimtex_view_general_viewer = 'okular'
-    -- vim.g.vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'
+    -- vim.g.vimtex_view_method = 'zathura_simple'
+    vim.g.vimtex_view_general_viewer = 'okular'
+    vim.g.vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'
   end,
 }

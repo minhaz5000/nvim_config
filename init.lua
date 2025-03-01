@@ -68,7 +68,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- Enable expandtab to insert spaces instead of tabs
 vim.opt.expandtab = true
@@ -603,7 +603,30 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        -- rust_analyzer = {
+        --   settings = {
+        --     ['rust-analyzer'] = {
+        --       cargo = {
+        --         allFeatures = true,
+        --       },
+        --       procMacro = {
+        --         enable = true,
+        --       },
+        --       imports = {
+        --         granularity = {
+        --           group = 'module',
+        --         },
+        --         prefix = 'self',
+        --       },
+        --       diagnostics = { enable = true, disabled = { 'unresolved-proc-macro' } },
+        --       completion = {
+        --         postfix = { enable = true },
+        --         callSnippet = 'Both',
+        --       },
+        --       inlayHints = { enable = true, chainingHints = true },
+        --     },
+        --   },
+        -- },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -647,11 +670,9 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'clangd', -- LSP for c/cpp
         'clang-format', -- c/cpp formatter
-        'pyright', -- LSP for python
-        'isort', -- import formatter python
-        'black', -- python formatter
         'shellcheck',
         'shfmt',
+        'rust-analyzer',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -679,6 +700,7 @@ require('lazy').setup({
       -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
+        version = 'v2.*',
         build = (function()
           -- Build Step is needed for regex support in snippets.
           -- This step is not supported in many windows environments.
@@ -817,10 +839,10 @@ require('lazy').setup({
             group_index = 0,
           },
           { name = 'nvim_lsp' },
+          { name = 'nvim_lsp_signature_help' },
           { name = 'luasnip' },
           { name = 'buffer', keyword_length = 3 },
           { name = 'path' },
-          { name = 'nvim_lsp_signature_help' },
         },
       }
     end,

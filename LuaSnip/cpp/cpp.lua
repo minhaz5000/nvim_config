@@ -6,9 +6,11 @@ local line_begin = require('luasnip.extras.expand_conditions').line_begin
 return {
   -- MAIN FUNCTION
   s(
-    { trig = 'main', dscr = 'Boilerplate main()' },
+    { trig = 'main', dscr = 'Boilerplate for c programs' },
     fmta(
       [[
+      #include <<iostream>>
+
       int main()
       {
           <>

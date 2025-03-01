@@ -38,10 +38,13 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { 'stylua' },
-      python = { 'isort', 'black' },
+      python = { 'ruff_organize_imports', 'ruff_format' },
       c = { 'clang_format' },
       cpp = { 'clang_format' },
       markdown = { 'mdsf', 'mdformat' },
+      sh = { 'shellharden', 'shfmt' },
+      yaml = { 'yamlfmt' },
+      tex = { 'latexindent' },
     },
     -- Set default options
     default_format_opts = {
