@@ -16,6 +16,7 @@ return {
     { f(get_date) }
     -- {f(get_ISO_8601_date)}
   ),
+  s({ trig = 'sign', dscr = 'My sign' }, { t { 'Yours Sincerely,', '', 'S. M. Minhazul Haque' } }, { condition = line_begin }),
   -- Date Modified snippet
   -- s({ trig = 'modifydate', dscr = 'Date Modified (Today)', condition = line_begin_or_non_letter }, fmt('Date Modified: {}', { f(get_date) })),
   -- s({ trig = 'createdate', dscr = 'Date Created (Today)', condition = line_begin_or_non_letter }, fmt('Date Created: {}', { f(get_date) })),

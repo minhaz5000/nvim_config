@@ -16,7 +16,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -68,7 +68,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 3
 
 -- Enable expandtab to insert spaces instead of tabs
 vim.opt.expandtab = true
@@ -608,6 +608,9 @@ require('lazy').setup({
         --     ['rust-analyzer'] = {
         --       cargo = {
         --         allFeatures = true,
+        --         checkOnSave = {
+        --           command = 'clippy', -- Runs Clippy instead of cargo check
+        --         },
         --       },
         --       procMacro = {
         --         enable = true,
@@ -618,12 +621,27 @@ require('lazy').setup({
         --         },
         --         prefix = 'self',
         --       },
-        --       diagnostics = { enable = true, disabled = { 'unresolved-proc-macro' } },
+        --       diagnostics = {
+        --         enable = true,
+        --         disabled = { 'unresolved-proc-macro' },
+        --         experimental = { enable = true },
+        --       },
         --       completion = {
         --         postfix = { enable = true },
         --         callSnippet = 'Both',
         --       },
-        --       inlayHints = { enable = true, chainingHints = true },
+        --       inlayHints = {
+        --         enable = true,
+        --         chainingHints = true,
+        --         parameterHints = true,
+        --         typeHints = { enable = true },
+        --       },
+        --       hover = {
+        --         actions = { enable = true }, -- Enables hover actions
+        --       },
+        --       lens = {
+        --         enable = true, -- Enables Code Lens (run/debug/test buttons in LSP)
+        --       },
         --     },
         --   },
         -- },
@@ -700,7 +718,6 @@ require('lazy').setup({
       -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
-        version = 'v2.*',
         build = (function()
           -- Build Step is needed for regex support in snippets.
           -- This step is not supported in many windows environments.
@@ -792,13 +809,13 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-i>'] = cmp.mapping.confirm { select = true },
+          ['<C-y>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          -- ['<CR>'] = cmp.mapping.confirm { select = true },
-          -- ['<Tab>'] = cmp.mapping.select_next_item(),
-          -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display

@@ -37,8 +37,9 @@ return {
 
     -- Disable syntax conceal
     -- vim.g.vimtex_syntax_conceal_disable = 0
+    vim.o.conceallevel = 1
 
-    -- vim.g.texconceal = 'abdmg'
+    vim.g.texconceal = 'abdmg'
 
     -- Default is 500 lines and gave me lags on missed key presses
     vim.g.vimtex_delim_stopline = 50

@@ -68,23 +68,6 @@ return {
     ),
     { condition = line_begin }
   ),
-  -- TOPIC ENVIRONMENT (my custom tcbtheorem environment)
-  s(
-    { trig = 'nt', snippetType = 'autosnippet' },
-    fmta(
-      [[
-        \begin{topic}{<>}{<>}
-            <>
-        \end{topic}
-      ]],
-      {
-        i(1),
-        i(2),
-        d(3, get_visual),
-      }
-    ),
-    { condition = line_begin }
-  ),
   -- EQUATION
   s(
     { trig = 'nn', desc = 'Equation* Environment', snippetType = 'autosnippet' },
@@ -183,7 +166,7 @@ return {
     { trig = 'fig', desc = 'Figure Environment' },
     fmta(
       [[
-        \begin{figure}[htb!]
+        \begin{figure}[<>]
           \centering
           \includegraphics[width=<>\linewidth]{<>}
           \caption{<>}
@@ -191,10 +174,11 @@ return {
         \end{figure}
       ]],
       {
-        i(1),
+        i(1, "htb!"),
         i(2),
         i(3),
         i(4),
+        i(5),
       }
     ),
     { condition = line_begin }
