@@ -36,8 +36,8 @@ return {
     vim.g.vimtex_imaps_enabled = 0
 
     -- Disable syntax conceal
-    -- vim.g.vimtex_syntax_conceal_disable = 0
-    vim.o.conceallevel = 1
+    vim.g.vimtex_syntax_conceal_disable = 0
+    -- vim.o.conceallevel = 1
 
     vim.g.texconceal = 'abdmg'
 
@@ -45,10 +45,10 @@ return {
     vim.g.vimtex_delim_stopline = 50
 
     -- VimTeX toggle delimeter configuration
-    -- vim.g.vimtex_delim_toggle_mod_list = {
-    --   {'\\left', '\\right'},
-    --   {'\\big', '\\big'},
-    -- }
+    vim.g.vimtex_delim_toggle_mod_list = {
+      {'\\left', '\\right'},
+      {'\\big', '\\big'},
+    }
 
     vim.g.vimtex_quickfix_mode = 0
     -- Don't open quickfix for warning messages if no errors are present

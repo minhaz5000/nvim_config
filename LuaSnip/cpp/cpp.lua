@@ -21,9 +21,9 @@ return {
     ),
     { condition = line_begin }
   ),
-  -- GENRIC FUNCTION
+  -- genric function
   s(
-    { trig = 'ff', snippetType = 'autosnippet' },
+    { trig = 'ff', snippettype = 'autosnippet' },
     fmta(
       [[
       /*
@@ -66,4 +66,6 @@ return {
   s({ trig = ';r', snippetType = 'autosnippet', wordTrig = false }, {
     t 'return',
   }, { condition = line_begin }),
+  -- Static cast
+  s({ trig = 'scst', desc = 'Static Cast', wordTrig = false }, fmt('static_cast<{}>({})', { i(1), d(2, get_visual) })),
 }
