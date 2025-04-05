@@ -567,10 +567,10 @@ require('lazy').setup({
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
+            [vim.diagnostic.severity.ERROR] = '� ',
+            [vim.diagnostic.severity.WARN] = '� ',
+            [vim.diagnostic.severity.INFO] = '� ',
+            [vim.diagnostic.severity.HINT] = '� ',
           },
         } or {},
         virtual_text = {
@@ -691,11 +691,6 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'clangd', -- LSP for c/cpp
-        'clang-format', -- c/cpp formatter
-        'shellcheck',
-        'shfmt',
-        'rust-analyzer',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -867,10 +862,10 @@ require('lazy').setup({
             group_index = 0,
           },
           { name = 'nvim_lsp' },
-          { name = 'nvim_lsp_signature_help' },
           { name = 'luasnip' },
           { name = 'buffer', keyword_length = 3 },
           { name = 'path' },
+          { name = 'nvim_lsp_signature_help' },
         },
       }
     end,
@@ -986,7 +981,7 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   { import = 'custom.plugins' },
   --
-  -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
+  -- For additional information with loading, sourcing and examples see `:help lazy.nvim-�-plugin-spec`
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
@@ -996,18 +991,18 @@ require('lazy').setup({
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
+      config = '�',
+      event = '�',
+      ft = '�',
       init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
+      keys = '�',
+      plugin = '�',
+      runtime = '�',
+      require = '�',
+      source = '�',
+      start = '�',
+      task = '�',
+      lazy = '� ',
     },
   },
 })

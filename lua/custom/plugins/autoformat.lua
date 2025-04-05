@@ -4,37 +4,32 @@ return {
   cmd = { 'ConformInfo' },
   keys = {
     {
-      -- Format the buffer and print confirmation
       '<leader>f',
       function()
-        require('conform').format { async = true }
-        print 'Buffer Formatted'
+        local conform = require('conform')
+        local ok, err = pcall(conform.format, { async = true })
+        vim.notify(
+          ok and '✅ Buffer Formatted' or '❌ Formatting failed: ' .. err,
+          ok and vim.log.levels.INFO or vim.log.levels.ERROR,
+          { timeout = 1000 }
+        )
       end,
-      mode = '',
-      desc = 'Format buffer',
+      desc = '[F]ormat buffer',
     },
     {
-      -- Toggle autoformat on save
       '<leader>ae',
       function()
-        vim.g.disable_autoformat = not vim.g.disable_autoformat
-        print('Autoformat on Save:', vim.g.disable_autoformat and 'Disabled' or 'Enabled')
+        local new_state = not vim.b.disable_autoformat
+        vim.b.disable_autoformat = new_state
+        vim.notify(
+          'Autoformat on Save ' .. (new_state and '🔴 Disabled' or '🟢 Enabled'),
+          vim.log.levels.INFO,
+          { timeout = 500 }
+        )
       end,
-      mode = '',
-      desc = 'Toggle autoformat-on-save',
-    },
-    {
-      -- Toggle clang-format style (global template vs default)
-      '<leader>ac',
-      function()
-        vim.g.use_clang_custom_style = not vim.g.use_clang_custom_style
-        print('clang-format style:', vim.g.use_clang_custom_style and 'Using Global Template' or 'Disabled')
-      end,
-      mode = '',
-      desc = 'Toggle clang-format style',
+      desc = 'Toggle [A]utoformat on [E]dit',
     },
   },
-
   opts = {
     formatters_by_ft = {
       lua = { 'stylua' },
@@ -46,49 +41,43 @@ return {
       yaml = { 'yamlfmt' },
       tex = { 'latexindent' },
     },
-    -- Set default options
-    default_format_opts = {
-      lsp_format = 'fallback',
-    },
+    format_on_save = function(bufnr)
+      if vim.b[bufnr].disable_autoformat then return nil end
+      if vim.api.nvim_buf_get_name(bufnr):find('/node_modules/', 1, true) then return nil end
+      return { timeout_ms = 500, lsp_format = 'fallback' }
+    end,
     formatters = {
       clang_format = {
         prepend_args = function()
-          if vim.g.use_clang_custom_style then
-            return { '--style=file:/home/minhaz/Templates/cpp/.clang-format' }
-          else
-            return {} -- No args when the toggle is off
-          end
+          return vim.b.use_clang_custom_style and { '--style=file:/home/minhaz/Templates/cpp/.clang-format' } or {}
         end,
       },
     },
-    format_on_save = function(bufnr)
-      -- Disable autoformat on certain filetypes
-      -- local ignore_filetypes = { 'sql', 'java', 'c', 'cpp' }
-      -- if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-      --   return
-      -- end
-      -- Disable with a global or buffer-local variable
-      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-        return
-      end
-      -- Disable autoformat for files in a certain path
-      local bufname = vim.api.nvim_buf_get_name(bufnr)
-      if bufname:match '/node_modules/' then
-        return
-      end
-
-      -- Run the formatting if enabled
-      return { timeout_ms = 500, lsp_format = 'fallback' }
-    end,
   },
-
   init = function()
-    -- Initialize clang-format toggle globally at the start
-    vim.g.use_clang_custom_style = true -- Set global style as default
-
-    -- Disable autoformat on save by default
-    vim.g.disable_autoformat = true
-
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    
+    local group = vim.api.nvim_create_augroup('ConformFT', {})
+    vim.api.nvim_create_autocmd('FileType', {
+      group = group,
+      pattern = { 'c', 'cpp' },
+      callback = function(args)
+        vim.b[args.buf].disable_autoformat = true
+        vim.b[args.buf].use_clang_custom_style = true
+
+        vim.keymap.set('n', '<leader>ac', function()
+          local new_style = not vim.b.use_clang_custom_style
+          vim.b.use_clang_custom_style = new_style
+          vim.notify(
+            'clang-format style: ' .. (new_style and '📜 Using Global Template' or '⚙️ Default'),
+            vim.log.levels.INFO,
+            { timeout = 500 }
+          )
+        end, {
+          buffer = args.buf,
+          desc = 'Toggle [A]uto [C]lang-format style',
+        })
+      end,
+    })
   end,
 }
