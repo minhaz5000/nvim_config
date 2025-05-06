@@ -16,7 +16,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+-- vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -279,6 +279,8 @@ require('lazy').setup({
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>a', group = '[A]utoformat Settings' },
+        { '<leader>z', group = '[Z]otcite' },
+        { '<leader>l', group = 'VimTex' },
       },
     },
   },
@@ -748,6 +750,7 @@ require('lazy').setup({
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp-signature-help',
+      'jalvesaq/cmp-zotcite',
     },
     config = function()
       -- See `:help cmp`
@@ -866,6 +869,7 @@ require('lazy').setup({
           { name = 'buffer', keyword_length = 3 },
           { name = 'path' },
           { name = 'nvim_lsp_signature_help' },
+          { name = 'cmp_zotcite' },
         },
       }
     end,
@@ -939,7 +943,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'yaml' },
       -- Autoinstall languages that are not installed
       auto_install = false,
       highlight = {

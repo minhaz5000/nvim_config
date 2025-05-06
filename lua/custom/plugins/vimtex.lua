@@ -2,7 +2,8 @@
 
 return {
   'lervag/vimtex',
-  config = function()
+  lazy = false,
+  init = function()
     -- vimtex configurations
     vim.g.vimtex_compiler_latexmk = {
       options = {
@@ -46,8 +47,8 @@ return {
 
     -- VimTeX toggle delimeter configuration
     vim.g.vimtex_delim_toggle_mod_list = {
-      {'\\left', '\\right'},
-      {'\\big', '\\big'},
+      { '\\left', '\\right' },
+      { '\\big', '\\big' },
     }
 
     vim.g.vimtex_quickfix_mode = 0

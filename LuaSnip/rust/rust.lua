@@ -10,5 +10,4 @@ return {
   s({ trig = ';.', snippetType = 'autosnippet', wordTrig = false }, {
     t '->',
   }),
-  s({ trig = 'vv', snippetType = 'autosnippet' }, fmta('{<>}', { i(1) })),
 }

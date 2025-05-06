@@ -80,14 +80,9 @@ return {
   -- VARIABLE
   s(
     { trig = 'vv', wordTrig = false, snippetType = 'autosnippet' },
-    fmta(
-      [[
-        ${<>}
-        ]],
-      {
-        d(1, get_visual),
-      }
-    )
+    fmta([[${<>}]], {
+      d(1, get_visual),
+    })
   ),
   -- ECHO
   s(
