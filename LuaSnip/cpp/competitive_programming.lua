@@ -11,6 +11,7 @@ return {
       [[
       #include <<bits/stdc++.h>>
 
+      using namespace std;
       typedef long long ll;
       typedef vector<<int>> vi;
       typedef pair<<int,int>> pi;
@@ -21,7 +22,6 @@ return {
       #define MP make_pair
       #define REP(i,a,b) for (int i = a; i <<= b; i++)
 
-      using namespace std;
 
       int main()
       {
