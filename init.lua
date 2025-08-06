@@ -128,15 +128,12 @@ vim.keymap.set('n', '<M-k>', ':m .-2<CR>==', { desc = 'Move line up', noremap = 
 -- easy save file
 vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true, desc = 'Save File' })
 
--- Easy quit
-vim.keymap.set('n', '<leader>q', ':q<CR>', { noremap = true, silent = true, desc = 'Quit' })
-
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -765,9 +762,8 @@ require('lazy').setup({
           luasnip.setup(opts)
           -- Load LuaSnip snippets
           require('luasnip.loaders.from_lua').lazy_load {
-            paths = { vim.fn.stdpath("config") .. "/snippets/" }
+            paths = { vim.fn.stdpath 'config' .. '/snippets/' },
           }
-
         end,
       },
 
