@@ -748,8 +748,29 @@ require('lazy').setup({
           --   end,
           -- },
         },
-        opts = {},
+        opts = {
+          -- Allow autotrigger snippets
+          enable_autosnippets = true,
+          -- This one is cool cause if you have dynamic snippets, it updates as you type!
+          update_events = { 'TextChanged', 'TextChangedI' },
+          -- For equivalent of UltiSnips visual selection
+          cut_selection_keys = '<Tab>',
+          -- Event on which to check for exiting a snippet's region
+          region_check_events = 'InsertEnter',
+          delete_check_events = 'InsertLeave',
+        },
+        -- Config function to load luasnip snippets
+        config = function(_, opts)
+          local luasnip = require 'luasnip'
+          luasnip.setup(opts)
+          -- Load LuaSnip snippets
+          require('luasnip.loaders.from_lua').lazy_load {
+            paths = { vim.fn.stdpath("config") .. "/snippets/" }
+          }
+
+        end,
       },
+
       'folke/lazydev.nvim',
     },
     --- @module 'blink.cmp'
