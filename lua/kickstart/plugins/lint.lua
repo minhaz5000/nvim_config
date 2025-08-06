@@ -6,8 +6,21 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
+        -- markdown = { 'markdownlint' },
+        json = { 'jsonlint' },
+        makefile = { 'checkmake' },
+        sh = { 'shellcheck' },
+        cmake = { 'cmakelint' },
+        cpp = { 'clangtidy' },
+        c = { 'clangtidy' },
+        yaml = { 'yamllint' },
+        github = { 'actionlint' },
+        markdown = { 'vale' },
+        text = { 'vale' },
       }
+
+      -- Add additional argument to shellcheck linter
+      lint.linters.shellcheck.args = vim.list_extend(lint.linters.shellcheck.args or {}, { '--external-sources' })
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:
