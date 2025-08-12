@@ -185,6 +185,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Keep cursor at end of selection after yank (disabled)
+-- vim.api.nvim_set_keymap('x', 'y', 'y`>', { noremap = true, silent = true })
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -892,6 +895,9 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+
+      -- disable mini.comment as I will be using comment.nvim
+      vim.g.minicomment_disable = true
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim

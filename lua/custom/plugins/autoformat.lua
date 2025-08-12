@@ -35,7 +35,6 @@ return {
       sh = { 'shfmt' },
       yaml = { 'yamlfmt' },
       tex = { 'latexindent' },
-      rust = { 'rust_analyzer' },
     },
 
     -- Control format on save per buffer
