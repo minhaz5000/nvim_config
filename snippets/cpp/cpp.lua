@@ -9,8 +9,6 @@ return {
     { trig = 'main', dscr = 'Boilerplate for c programs' },
     fmta(
       [[
-      #include <<iostream>>
-
       int main()
       {
           <>
@@ -26,19 +24,15 @@ return {
     { trig = 'ff', snippettype = 'autosnippet' },
     fmta(
       [[
-      /*
-      <>
-      */
       <>(<>)
       {
           <>
       }
       ]],
       {
-        i(3),
-        i(1),
-        i(2),
-        d(4, get_visual),
+        i(1, 'return_type function_name'),
+        i(2, 'params'),
+        d(3, get_visual),
       }
     ),
     { condition = line_begin }
@@ -53,8 +47,8 @@ return {
       };
       ]],
       {
-        i(1),
-        i(0),
+        i(1, 'StructName'),
+        i(2),
       }
     )
   ),
@@ -67,5 +61,5 @@ return {
     t 'return',
   }, { condition = line_begin }),
   -- Static cast
-  s({ trig = 'scst', desc = 'Static Cast', snippetType = 'autosnippet' }, fmt('static_cast<{}>({})', { i(1, 'typename'), d(2, get_visual) })),
+  s({ trig = 'scast', desc = 'Static Cast', snippetType = 'autosnippet' }, fmt('static_cast<{}>({})', { i(1, 'typename'), d(2, get_visual) })),
 }
