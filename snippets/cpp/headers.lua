@@ -20,4 +20,6 @@ return {
   s({ trig = 'hstr', snippetType = 'autosnippet' }, { t '#include <string>' }, { condition = line_begin }),
   -- Default namespace std;
   s({ trig = 'unstd', snippetType = 'autosnippet' }, { t 'using namespace std;' }, { condition = line_begin }),
+
+  s({ trig = 'ttt', snippetType = 'autosnippet' }, { t 'template <typename T>' }, { condition = line_begin }),
 }
