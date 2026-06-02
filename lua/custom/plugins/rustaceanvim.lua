@@ -1,5 +1,2 @@
-return {
-  'mrcjkb/rustaceanvim',
-  version = '^8', -- Recommended
-  lazy = false, -- This plugin is already lazy
-}
+-- Rustaceanvim for Rust Development
+vim.pack.add { { src = 'https://github.com/mrcjkb/rustaceanvim', version = vim.version.range('^9') } }
