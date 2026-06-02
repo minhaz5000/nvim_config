@@ -11,7 +11,7 @@ return {
   }),
   -- LINK; CAPTURE TEXT IN VISUAL
   s(
-    { trig = 'LL', wordTrig = true, snippetType = 'autosnippet' },
+    { trig = 'LL', wordTrig = true },
     fmta([[[<>](<>)]], {
       d(1, get_visual),
       i(2),
@@ -19,7 +19,7 @@ return {
   ),
   -- LINK; CAPTURE URL IN VISUAL
   s(
-    { trig = 'LU', wordTrig = true, snippetType = 'autosnippet' },
+    { trig = 'LU', wordTrig = true },
     fmta([[[<>](<>)]], {
       i(1),
       d(2, get_visual),

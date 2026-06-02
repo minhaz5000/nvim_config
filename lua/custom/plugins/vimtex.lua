@@ -31,7 +31,7 @@ return {
     vim.opt.conceallevel = 2
     -- vim.opt.concealcursor = 'nc'
 
-    vim.g.vimtex_fold_enabled = 1
+    -- vim.g.vimtex_fold_enabled = 1
     vim.g.texconceal = 'abdmg'
     vim.g.vimtex_delim_stopline = 50
 
