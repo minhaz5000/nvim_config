@@ -30,7 +30,6 @@ vim.g.vimtex_indent_enabled = 0
 vim.g.vimtex_imaps_enabled = 0
 
 vim.g.vimtex_syntax_conceal_disable = 0
-vim.opt.conceallevel = 2
 -- vim.opt.concealcursor = 'nc'
 
 -- vim.g.vimtex_fold_enabled = 1

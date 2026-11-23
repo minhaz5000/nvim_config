@@ -29,7 +29,7 @@ do
   vim.o.number = true
   -- You can also add relative line numbers, to help with jumping.
   --  Experiment for yourself to see if you like it!
-  -- vim.o.relativenumber = true
+  vim.o.relativenumber = true
 
   -- Enable mouse mode, can be useful for resizing splits for example!
   vim.o.mouse = 'a'
@@ -94,10 +94,6 @@ do
   -- [[ Basic Keymaps ]]
   --  See `:help vim.keymap.set()`
 
-  -- Move current line up and down
-  vim.keymap.set('n', '<M-j>', ':m .+1<CR>==', { noremap = true, silent = true })
-  vim.keymap.set('n', '<M-k>', ':m .-2<CR>==', { noremap = true, silent = true })
-
   -- Move half screen up or down and center screen
   vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })
   vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
@@ -121,22 +117,6 @@ do
   -- Remap for dealing with word wrap
   vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
   vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
-  -- Diagnostic Config & Keymaps
-  -- See :help vim.diagnostic.Opts
-  vim.diagnostic.config {
-    update_in_insert = false,
-    severity_sort = true,
-    float = { border = 'rounded', source = 'if_many' },
-    underline = { severity = vim.diagnostic.severity.ERROR },
-
-    -- Can switch between these as you prefer
-    virtual_text = true, -- Text shows up at the end of the line
-    virtual_lines = false, -- Teest shows up underneath the line, with virtual lines
-
-    -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
-    jump = { float = true },
-  }
 
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
   -- Clear highlights on search when pressing <Esc> in normal mode
@@ -166,8 +146,6 @@ do
       end,
     },
   }
-
-  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
   -- Buffer Keymaps
   vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = 'Delete buffer', noremap = true, silent = true })
@@ -633,33 +611,6 @@ do
       --  For example, in C this would take you to the header.
       map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-      -- Extras I have added:
-
-      -- Jump to the definition of the word under your cursor.
-      --  This is where a variable was first declared, or where a function is defined, etc.
-      --  To jump back, press <C-t>.
-      map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-
-      -- Find references for the word under your cursor.
-      map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-
-      -- Jump to the implementation of the word under your cursor.
-      --  Useful when your language has ways of declaring types without an actual implementation.
-      map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
-      -- Fuzzy find all the symbols in your current document.
-      --  Symbols are things like variables, functions, types, etc.
-      map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
-
-      -- Fuzzy find all the symbols in your current workspace.
-      --  Similar to document symbols, except searches over your entire project.
-      map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
-
-      -- Jump to the type of the word under your cursor.
-      --  Useful when you're not sure what type a variable is and you want to see
-      --  the definition of its *type*, not where it was *defined*.
-      map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
-
       -- The following two autocommands are used to highlight references of the
       -- word under your cursor when your cursor rests there for a little while.
       --    See `:help CursorHold` for information about when this is executed
@@ -705,9 +656,10 @@ do
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
   local servers = {
-    -- clangd = {},
+    clangd = {},
     -- gopls = {},
-    -- pyright = {},
+    basedpyright = {},
+    texlab = {},
     -- rust_analyzer = {},
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -773,6 +725,11 @@ do
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
     -- You can add other tools here that you want Mason to install
+    'yamllint',
+    'jsonlint',
+    'actionlint',
+    'cmakelint',
+    'checkmake',
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
